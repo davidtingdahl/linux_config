@@ -16,4 +16,4 @@
 (setq-default indent-tabs-mode nil)
 
 ;; Delete trailing whitespace on save
-(add-hook 'before-save-hook 'delete-trailing-whitespace)
+(setq-default show-trailing-whitespace 't)
