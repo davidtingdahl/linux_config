@@ -16,6 +16,9 @@ alias l='ls -CF'
 #Colorful bash prompt with git
 export PS1="\[\e[34;1m\]\u\[\e[37;1m\]@\[\e[36;1m\]\h\[\e[32;1m\] \w\[\e[37;1m\]\$(parse_git_branch_or_tag)\n> \[\e[0m\]"
 
-#navigating words with ctrl+arrow
-bind '"\;5C":forward-word'
-bind '"\;5D":backward-word'
+
+#Bash completion
+if [ -f /etc/bash_completion ]
+then
+    source /etc/bash_completion
+fi
