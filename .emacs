@@ -14,6 +14,3 @@
 
 ;; Indentation using spaces
 (setq-default indent-tabs-mode nil)
-
-;; Delete trailing whitespace on save
-(setq-default show-trailing-whitespace 't)
