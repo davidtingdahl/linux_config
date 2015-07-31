@@ -1,5 +1,9 @@
 (global-set-key (kbd "<f1>") 'compile)
 
+;; No splash screen
+(setq inhibit-splash-screen t)
+
+;; Setup colours
 (set-background-color "black")
 (set-foreground-color "white")
 
@@ -14,3 +18,4 @@
 
 ;; Indentation using spaces
 (setq-default indent-tabs-mode nil)
+
