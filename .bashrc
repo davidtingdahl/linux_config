@@ -2,6 +2,9 @@
 alias ll='ls -l'
 alias la='ls -A'
 alias l='ls -CF'
+alias grep='grep --color=always'
+alias grep2='grep'
+alias less='less -R'
 
 # Setup git prompt
 source ~/linux_config/gitprompt.sh
