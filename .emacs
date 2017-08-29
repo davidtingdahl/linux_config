@@ -1,4 +1,10 @@
+;; Compile shortcut
 (global-set-key (kbd "<f1>") 'compile)
+
+;; IPython macro
+(fset 'ipython
+   [?i ?m ?p ?o ?r ?t ?  ?I ?P ?y ?t ?h ?o ?n return ?I ?P ?y ?t ?h ?o ?n ?. ?e ?m ?b ?e ?d ?\( ?\) return ?e ?x ?i ?t ?\( ?1 ?\) return])
+(global-set-key (kbd "<f2>") 'ipython)
 
 ;; No splash screen
 (setq inhibit-splash-screen t)
@@ -19,10 +25,7 @@
 ;; Indentation using spaces
 (setq-default indent-tabs-mode nil)
 
-;; IPython macro
-(fset 'ipython
-   [?i ?m ?p ?o ?r ?t ?  ?I ?P ?y ?t ?h ?o ?n return ?I ?P ?y ?t ?h ?o ?n ?. ?e ?m ?b ?e ?d ?\( ?\) return ?e ?x ?i ?t ?\( ?1 ?\) return])
-(global-set-key (kbd "<f2>") 'ipython)
+(setq-default show-trailing-whitespace t)
 
 ;; Whitespace display
 (progn
