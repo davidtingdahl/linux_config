@@ -5,6 +5,7 @@ alias l='ls -CF'
 alias grep='grep --color=always'
 alias grep2='grep'
 alias less='less -R'
+alias zack='ack-grep --ignore-dir build --ignore-dir external'
 
 # Setup git prompt
 source ~/linux_config/gitprompt.sh
@@ -17,7 +18,7 @@ host=$(hostname)
 usercol="92" # Away colors
 hostcol="93"
 
-if [ $host == "freja" ] || [ $(echo $host | grep fpc-algo) ]
+if [ $host == "osboxes" ]
 then
     usercol="34" # Home colors
     hostcol="36"
