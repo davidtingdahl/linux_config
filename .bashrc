@@ -23,7 +23,7 @@ then
     usercol="34" # Home colors
     hostcol="36"
 fi
-export PS1="\[\e[${usercol};1m\]\u\[\e[37;1m\]@\[\e[${hostcol};1m\]\h\[\e[32;1m\] \w\[\e[37;1m\]\$(__git_ps1)\n\$?> \[\e[0m\]"
+export PS1="\[\e[${hostcol};1m\]\h \D{%H:%M}\[\e[32;1m\] \w\[\e[37;1m\]\$(__git_ps1)\n\$?> \[\e[0m\]"
 
 # Bash completion
 if [ -f /etc/bash_completion ]
