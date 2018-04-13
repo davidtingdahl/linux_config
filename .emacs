@@ -1,3 +1,6 @@
+(add-to-list 'load-path "~/linux_config/")
+
+
 ;; Compile shortcut
 (global-set-key (kbd "<f1>") 'compile)
 
@@ -41,3 +44,18 @@
           (newline-mark 10 [182 10]) ; LINE FEED,
           (tab-mark 9 [9655 9] [92 9]) ; tab
           )))
+
+(require 'package)
+(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
+(package-initialize)
+
+(setq-default c-basic-offset 4)
+(require 'google-c-style)
+(add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
+(add-to-list 'auto-mode-alist '("\\.cc\\'" . c++-mode))
+(add-hook 'c-mode-common-hook 'google-set-c-style)
+
+(setq-default c-basic-offset 4)
+(setq c-block-comment-prefix "* ")
+;; Skip warnings
+(setq compilation-skip-threshold 2)
