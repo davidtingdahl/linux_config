@@ -6,6 +6,7 @@ alias grep='grep --color=always'
 alias grep2='grep'
 alias less='less -R'
 alias zack='ack-grep --ignore-dir build --ignore-dir external'
+alias octave='octave --no-gui'
 
 # Setup git prompt
 source ~/linux_config/gitprompt.sh
