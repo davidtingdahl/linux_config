@@ -7,6 +7,7 @@ alias grep2='grep'
 alias less='less -R'
 alias zack='ack-grep --ignore-dir build --ignore-dir external'
 alias octave='octave --no-gui'
+alias git_commit_review='rm -f $(git rev-parse --show-toplevel)/.git/SQUASH_MSG; git commit'
 
 # Setup git prompt
 source ~/linux_config/gitprompt.sh
@@ -39,3 +40,5 @@ then
     export EDITOR="emacs"
 fi
 
+export CC=/usr/lib/ccache/gcc
+export CXX=/usr/lib/ccache/g++
