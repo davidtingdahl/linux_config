@@ -42,3 +42,5 @@ fi
 
 export CC=/usr/lib/ccache/gcc
 export CXX=/usr/lib/ccache/g++
+
+export PATH="$PATH":"$HOME"/linux_config/scripts
