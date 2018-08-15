@@ -1,0 +1,5 @@
+#!/bin/bash
+
+for fn in $(find . -regextype egrep -regex ".*(\.cc|\.h)" | grep -v "/external/" | grep -v "/build/"); do
+    clang-format -i "$fn"
+ done
