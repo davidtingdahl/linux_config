@@ -60,7 +60,3 @@
 ;; Skip warnings
 (setq compilation-skip-threshold 2)
 
-
-;; Ccache
-(setenv "CC" "/usr/lib/ccache/gcc")
-(setenv "CXX" "/usr/lib/ccache/g++")
