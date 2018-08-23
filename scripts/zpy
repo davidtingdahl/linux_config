@@ -2,7 +2,7 @@
 
 git_dir=$(git rev-parse --show-toplevel)
 echo "Building ZEUS..."
-"$git_dir"/scripts/build.sh -j5 > /dev/null
+make -C "$git_dir"/visual_odometry/cpp/build -j5 > /dev/null
 echo "..done"
 
 PYTHONPATH="$git_dir"/visual_odometry python3 $@
