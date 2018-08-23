@@ -60,3 +60,7 @@
 ;; Skip warnings
 (setq compilation-skip-threshold 2)
 
+;; Dockerfile mode
+(require 'dockerfile-mode)
+(add-to-list 'auto-mode-alist '("Dockerfile\\'" . dockerfile-mode))
+
