@@ -17,15 +17,18 @@ export GIT_PS1_SHOWUPSTREAM="auto"
 
 # Setup host-dependant prompt
 host=$(hostname)
-usercol="92" # Away colors
-hostcol="93"
-
-if [ $host == "osboxes" ]
+if [ -f /.dockerenv ];
+then
+    host='docker'
+    hostcol='\e[30;1m'
+elif [ $host == "osboxes" ]
 then
     hostcol='\e[36;1m'
+else
+    hostcol='\e[32;1m'
 fi
 
-export PS1="\[${hostcol}\]\h \[\e[37;1m\]\D{%H:%M}\[\e[32;1m\] \w\[\e[37;1m\]\$(__git_ps1)\n\$?> \[\e[0m\]"
+export PS1="\[${hostcol}\]${host} \[\e[37;1m\]\D{%H:%M}\[\e[32;1m\] \w\[\e[37;1m\]\$(__git_ps1)\n\$?> \[\e[0m\]"
 
 # Bash completion
 if [ -f /etc/bash_completion ]
