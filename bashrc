@@ -22,10 +22,10 @@ hostcol="93"
 
 if [ $host == "osboxes" ]
 then
-    usercol="34" # Home colors
-    hostcol="36"
+    hostcol='\e[36;1m'
 fi
-export PS1="\[\e[${hostcol};1m\]\h \[\e[37;1m\]\D{%H:%M}\[\e[32;1m\] \w\[\e[37;1m\]\$(__git_ps1)\n\$?> \[\e[0m\]"
+
+export PS1="\[${hostcol}\]\h \[\e[37;1m\]\D{%H:%M}\[\e[32;1m\] \w\[\e[37;1m\]\$(__git_ps1)\n\$?> \[\e[0m\]"
 
 # Bash completion
 if [ -f /etc/bash_completion ]
