@@ -1,0 +1,5 @@
+#!/bin/bash
+
+DOCKER=$(docker ps -a | grep gzeus | awk '{print $1}')
+
+docker exec $DOCKER $@
