@@ -3,6 +3,8 @@
 
 ;; Compile shortcut
 (global-set-key (kbd "<f1>") 'compile)
+(setq compile-command "zdocker-exec make -j5 -k")
+(setq compilation-scroll-output 'first-error)
 
 ;; IPython macro
 (fset 'ipython
@@ -63,4 +65,7 @@
 ;; Dockerfile mode
 (require 'dockerfile-mode)
 (add-to-list 'auto-mode-alist '("Dockerfile\\'" . dockerfile-mode))
+
+;; Make emacs pick up PATH and other stuff from bashrc
+(setq shell-command-switch "-ic")
 
