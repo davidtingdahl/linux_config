@@ -9,3 +9,4 @@ git_dir=$(git rev-parse --show-toplevel)
     cd "$git_dir"/visual_odometry/cpp
     find -type f -iname "*.h"  -or -iname "*.cc" | etags -
 )
+echo "$git_dir"/visual_odometry/cpp/TAGS

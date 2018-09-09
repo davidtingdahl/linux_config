@@ -71,6 +71,10 @@
 
 ;; Tags
 (defun update-tags ()
-  "Lists the contents of the current directory."
+  "Update TAGS"
   (interactive)
-  (shell-command "update_tags.sh"))
+  (shell-command "update_tags.sh")
+;;(setq tags_file (shell-command-to-string "update_tags.sh"))
+  (visit-tags-table "/home/davtin/develop/vision_3dreconstruction/visual_odometry/cpp/TAGS")
+)
+(global-set-key (kbd "<f3>") 'update-tags)
