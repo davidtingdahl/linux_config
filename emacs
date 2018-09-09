@@ -69,3 +69,8 @@
 ;; Make emacs pick up PATH and other stuff from bashrc
 (setq shell-command-switch "-ic")
 
+;; Tags
+(defun update-tags ()
+  "Lists the contents of the current directory."
+  (interactive)
+  (shell-command "update_tags.sh"))
