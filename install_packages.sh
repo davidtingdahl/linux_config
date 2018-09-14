@@ -1,1 +1,1 @@
-apt-get install xdotool wmctrl emacs cmake xfce4
+apt-get install xfce4 cmake emacs ccache git-review docker.io checkinstall curl ack-grep
