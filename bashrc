@@ -5,7 +5,10 @@ alias l='ls -CF'
 alias grep='grep --color=always'
 alias grep2='grep'
 alias less='less -R'
-alias zack='ack-grep --ignore-dir build --ignore-dir external'
+
+which ack > /dev/null
+[[ $? == 0 ]] && alias zack='ack --ignore-dir build --ignore-dir external'
+[[ $? == 1 ]] && alias zack='ack-grep --ignore-dir build --ignore-dir external'
 alias octave='octave --no-gui'
 alias git_commit_review='rm -f $(git rev-parse --show-toplevel)/.git/SQUASH_MSG; git commit'
 
@@ -39,4 +42,4 @@ then
     export EDITOR="emacs"
 fi
 
-export PATH="$PATH":"$HOME"/linux_config/scripts
+export PATH=/usr/lib/ccache:"$PATH":"$HOME"/linux_config/scripts:
