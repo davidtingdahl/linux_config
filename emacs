@@ -19,10 +19,14 @@
 (set-foreground-color "white")
 
 ;; Move between windows (as opened with C-x 2, C-x 3)
-(global-set-key [s-left] 'windmove-left)   ; move to left windnow
-(global-set-key [s-right] 'windmove-right) ; move to right window
-(global-set-key [s-up] 'windmove-up)       ; move to upper window
-(global-set-key [s-down] 'windmove-down)   ; move to downer window
+(global-set-key (kbd "s-a") 'windmove-left)   ; move to left windnow
+(global-set-key (kbd "s-d") 'windmove-right) ; move to right window
+(global-set-key (kbd "s-w") 'windmove-up)       ; move to upper window
+(global-set-key (kbd "s-s") 'windmove-down)   ; move to downer window
+;; (global-set-key [s-left] 'windmove-left)   ; move to left windnow
+;; (global-set-key [s-right] 'windmove-right) ; move to right window
+;; (global-set-key [s-up] 'windmove-up)       ; move to upper window
+;; (global-set-key [s-down] 'windmove-down)   ; move to downer window
 
 ;; Customizations of various modes
 (global-auto-revert-mode 1)
@@ -78,3 +82,6 @@
   (visit-tags-table "/home/davtin/develop/vision_3dreconstruction/visual_odometry/cpp/TAGS")
 )
 (global-set-key (kbd "<f3>") 'update-tags)
+
+;; Magit
+(global-set-key (kbd "C-x g") 'magit-status)
