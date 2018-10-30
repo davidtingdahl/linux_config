@@ -18,12 +18,14 @@ export GIT_PS1_SHOWCOLORHINTS=1
 export GIT_PS1_SHOWDIRTYSTATE=1
 export GIT_PS1_SHOWUPSTREAM="auto"
 
-# Setup host-dependant prompt
+# Setup promt
 if [ -f /.dockerenv ];
 then
     hostcol='\e[30;1m'
+elif [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]
+then
+    hostcol='\e[33;1m'
 else
-    HOSTNAME=$(hostname)
     hostcol='\e[36;1m'
 fi
 
