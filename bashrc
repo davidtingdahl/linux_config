@@ -44,4 +44,4 @@ then
     export EDITOR="emacs"
 fi
 
-export PATH=/usr/lib/ccache:"$PATH":"$HOME"/linux_config/scripts:
+PATH=$PATH:/usr/lib/ccache:"$HOME"/linux_config/scripts:
