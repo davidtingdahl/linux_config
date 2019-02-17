@@ -3,4 +3,4 @@
 GIT_DIR=$(git rev-parse --show-toplevel)
 
 [[ ! -d "$GIT_DIR"/visual_odometry ]] && echo "ERROR: must be run from a VO repo" && exit 1
-zdocker-exec make -C $GIT_DIR/visual_odometry/cpp/build $@
+zdocker-exec make -C $GIT_DIR/core/src/build $@
