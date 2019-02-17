@@ -4,7 +4,7 @@
 ;; Compile shortcut
 (global-set-key (kbd "<f1>") 'compile)
 ;;(setq compile-command "zdocker-exec make -j5 -k")
-(setq compile-command "make-vo")
+(setq compile-command "make-vo -j5")
 (setq compilation-scroll-output 'first-error)
 
 ;; IPython macro
@@ -79,8 +79,7 @@
   "Update TAGS"
   (interactive)
   (shell-command "update_tags.sh")
-;;(setq tags_file (shell-command-to-string "update_tags.sh"))
-  (visit-tags-table "/home/davtin/develop/vision_3dreconstruction/visual_odometry/cpp/TAGS")
+  (visit-tags-table "/tmp/TAGS")
 )
 (global-set-key (kbd "<f3>") 'update-tags)
 

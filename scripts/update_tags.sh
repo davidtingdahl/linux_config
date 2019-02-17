@@ -1,12 +1,11 @@
 #/usr/bin/bash
 
-
 git_dir=$(git rev-parse --show-toplevel)
 
 [[ ! -d "$git_dir" ]] && echo "Not a git repo" && exit 1
 
 (
-    cd "$git_dir"/visual_odometry/cpp
-    find -type f -iname "*.h"  -or -iname "*.cc" | etags -
+    cd "$git_dir"/core/src
+    find -type f -iname "*.h"  -or -iname "*.cc" | etags -o /tmp/TAGS -
 )
-echo "$git_dir"/visual_odometry/cpp/TAGS
+echo "$git_dir"/core/src/TAGS
