@@ -1,4 +1,0 @@
-#!/bin/bash
-
-git_dir=$(git rev-parse --show-toplevel)
-PYTHONPATH="$git_dir"/visual_odometry python3 $@
