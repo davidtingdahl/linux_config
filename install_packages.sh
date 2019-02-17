@@ -1,1 +1,1 @@
-apt-get install xfce4 cmake emacs ccache git-review checkinstall curl ack-grep gitk cifs-utils
+apt-get install xfce4 xfce4-power-manager cmake emacs ccache git-review curl ack-grep gitk cifs-utils
