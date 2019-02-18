@@ -1,5 +1,5 @@
 (add-to-list 'load-path "~/linux_config/")
-
+(add-to-list 'load-path "~/linux_config/")
 
 ;; Compile shortcut
 (global-set-key (kbd "<f1>") 'compile)
