@@ -1,0 +1,4 @@
+#!/bin/bash
+
+ROOT_DIR=$(git rev-parse --show-toplevel)
+$ROOT_DIR/scripts/docker-run.sh --dev $@
