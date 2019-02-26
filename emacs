@@ -84,3 +84,66 @@
 
 ;; Magit
 (global-set-key (kbd "C-x g") 'magit-status)
+
+
+;; set up package sources
+(require 'package)
+(setq package-enable-at-startup nil)
+(add-to-list 'package-archives
+'("melpa" . "https://melpa.org/packages/"))
+(package-initialize)
+
+;; Bootstrap `use-package'
+(unless (package-installed-p 'use-package)
+(package-refresh-contents)
+(package-install 'use-package))
+
+;; small interface tweaks
+(setq inhibit-startup-message t)
+(tool-bar-mode -1)
+(fset 'yes-or-no-p 'y-or-n-p)
+(global-set-key (kbd "<f5>") 'revert-buffer)
+
+;; bring up help for key bindings
+(use-package which-key
+:ensure t
+:config
+(which-key-mode))
+
+;; Auto completion
+(use-package auto-complete
+:ensure t
+:init
+(progn
+(ac-config-default)
+(global-auto-complete-mode t)
+))
+
+;; on the fly syntax checking
+(use-package flycheck
+:ensure t
+:init
+
+(global-flycheck-mode t))
+
+(setq flycheck-clang-include-path (list "/home/davtin/develop/vision_3dreconstruction/core/src" "/home/davtin/develop/vision_3dreconstruction/build/generated" "/home/davtin/develop/vision_3dreconstruction/core/src/external"  "/home/davtin/develop/vision3d_docker_includes/usr/local/include" "/home/davtin/develop/vision3d_docker_includes/usr/include" "/home/davtin/develop/vision3d_docker_includes/usr/local/include/eigen3"))
+(require 'clang-format)
+(add-hook
+     'c++-mode-hook
+      (lambda ()
+      (local-set-key (kbd "<tab>") #'clang-format-region)))
+;; (define-key c++-mode (kbd "<tab>") 'clang-format-region)
+(global-set-key (kbd "C-c u") 'clang-format-buffer)
+
+;; snippets and snippet expansion
+(use-package yasnippet
+:ensure t
+:init
+(yas-global-mode 1))
+
+;; Theme
+(use-package color-theme
+:ensure t)
+(use-package moe-theme
+:ensure t)
+(moe-dark)
