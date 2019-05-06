@@ -126,7 +126,30 @@
 
 (global-flycheck-mode t))
 
-(setq flycheck-clang-include-path (list "/home/davtin/develop/vision_3dreconstruction/core/src" "/home/davtin/develop/vision_3dreconstruction/build/generated" "/home/davtin/develop/vision_3dreconstruction/core/src/external"  "/home/davtin/develop/vision3d_docker_includes/usr/local/include" "/home/davtin/develop/vision3d_docker_includes/usr/include" "/home/davtin/develop/vision3d_docker_includes/usr/local/include/eigen3"))
+(setq flycheck-checker-error-threshold 10000)
+(setq flycheck-gcc-args (list
+                         "-O0"
+                         "-DEIGEN_DONT_PARALLELIZE"
+                        ;; "-nostdinc" "-nostdinc++"
+                         "-Wall" "-Wextra" "-Wshadow" "-pedantic" "-fPIC" "-std=c++14" "-lm"))
+
+(setq flycheck-gcc-include-path (list
+                                 "/home/davtin/develop/vision_3dreconstruction/build/generated"
+                                 "/home/davtin/develop/vision_3dreconstruction/core/src"
+                                 "/home/davtin/develop/vision_3dreconstruction/core/src/external"
+                                 "/home/davtin/develop/vision_3dreconstruction/common/include"
+                                 "/home/davtin/develop/dockerenv/usr/local/include"
+                                 "/home/davtin/develop/dockerenv/usr/local/include/opencv4"
+                                 "/home/davtin/develop/dockerenv/usr/include"
+                                 "/home/davtin/develop/dockerenv/usr/local/include/eigen3"
+                                 ;; "/home/davtin/develop/dockerenv/usr/include/c++/5"
+                                 ;; "/home/davtin/develop/dockerenv/usr/include/c++/5"
+                                 ;; "/home/davtin/develop/dockerenv/usr/include/c++/5/tr1"
+                                 ;; "/home/davtin/develop/dockerenv/usr/include/linux"
+                                 "/home/davtin/develop/dockerenv/usr/include/x86_64-linux-gnu"
+                                 ;; "/home/davtin/develop/dockerenv/usr/include/x86_64-linux-gnu/c++/5"
+                                 ;; "/home/davtin/develop/dockerenv/usr/lib/gcc/x86_64-linux-gnu/5/include"
+                                 ))
 (require 'clang-format)
 (add-hook
      'c++-mode-hook
