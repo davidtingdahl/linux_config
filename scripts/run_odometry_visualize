@@ -3,7 +3,7 @@
 set -x
 run_odometry $@ -z &
 pid=$!
-visualizer
+visualizer -t 10 $VIS_ARGS
 kill $pid
 
 

@@ -1,4 +1,7 @@
 #!/bin/bash
 
+set -ex
 ROOT_DIR=$(git rev-parse --show-toplevel)
+
+export DOCKER_NAME_POSTFIX=-$(basename $(dirname $ROOT_DIR))
 $ROOT_DIR/scripts/docker-run.sh --dev $@

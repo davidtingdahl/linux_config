@@ -1,6 +1,10 @@
 #!/bin/bash
+set -ex
 
-DOCKER=$(docker ps -a | grep vision3d | head -n1 | awk '{print $1}')
+ROOT_DIR=$(git rev-parse --show-toplevel)
+DOCKER_NAME_POSTFIX=-$(basename $(dirname $ROOT_DIR))
+DOCKER=ZDEV"$DOCKER_NAME_POSTFIX"
+
 [[ -z "$DOCKER" ]] && echo "ERROR: no running container found" && exit 1
 
 

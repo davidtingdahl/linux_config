@@ -3,7 +3,7 @@
 ;; Compile shortcut
 (global-set-key (kbd "<f1>") 'compile)
 ;;(setq compile-command "zdocker-exec make -j5 -k")
-(setq compile-command "make-vo -j5")
+(setq compile-command "make-vo v3d-run-odometry v3d-core-visualizer -j5")
 (setq compilation-scroll-output 'first-error)
 
 ;; IPython macro

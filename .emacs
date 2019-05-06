@@ -1,1 +1,1 @@
-(load "~/linux_config/emacs")
+(load "~/linux_config/emacs.lisp")
