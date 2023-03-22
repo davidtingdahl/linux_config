@@ -1,0 +1,11 @@
+keycode 133 = Mode_switch
+
+keysym j = j J Left
+keysym l = l L Right
+keysym i = i I Up
+keysym k = k K Down
+keysym u = u U Prior
+keysym m = m M Next
+
+keysym o = o O Home
+keysym period = period greater End

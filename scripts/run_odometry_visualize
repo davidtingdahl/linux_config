@@ -1,9 +1,0 @@
-#!/bin/bash
-
-set -x
-run_odometry $@ -z &
-pid=$!
-visualizer -t 10 $VIS_ARGS
-kill $pid
-
-

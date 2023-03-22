@@ -6,11 +6,9 @@
 
         authors = "for-each-ref  --format=' %(authorname) %09 %(refname)' --sort=authorname"
 [user]
-	email = david.tingdahl@zenuity.com
+	email = david.tingdahl@zenseact.com
 	name = David Tingdahl
 [push]
 	default = simple
 [diff]
         tool = kdiff3
-[github]
-	user = DavidTingdahlZenuity

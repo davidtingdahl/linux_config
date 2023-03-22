@@ -1,7 +1,51 @@
 #!/bin/bash
 
-set -ex
-ROOT_DIR=$(git rev-parse --show-toplevel)
+[[ $# != 1 ]] && echo "usage: $0 docker:tag" && exit 1
 
-export DOCKER_NAME_POSTFIX=-$(basename $(dirname $ROOT_DIR))
-$ROOT_DIR/scripts/docker-run.sh --dev $@
+set -euxo pipefail
+DOCKER_FULL_NAME=$1
+DOCKER_NAME=$(echo $DOCKER_FULL_NAME | cut -d: -f1)
+DOCKER_TAG=$(echo $DOCKER_FULL_NAME | cut -d: -f2)
+CONTAINER_NAME=$(echo $DOCKER_NAME | tr '/' '_')
+
+# The following is a hack that creates a linux group and user with the same
+# uid:gid as the host. It then logs in this user so that all files created have
+# the host user as owner and group.
+CONTAINER_USERNAME=$(whoami)
+CONTAINER_GROUPNAME=$(id -gn)
+USER_ID=$(id -u)
+GROUP_ID=$(id -g)
+read -r -d '' CREATE_USER_COMMAND << EOF || true
+groupadd --force --gid "$GROUP_ID" "$CONTAINER_GROUPNAME" &&
+useradd --no-log-init \
+        --no-create-home \
+        --uid "$USER_ID" \
+        --gid "$GROUP_ID" \
+        --groups sudo \
+        --home-dir "$HOME" \
+        --shell /bin/bash \
+        "$CONTAINER_USERNAME" | true &&
+echo "root:root" | chpasswd &&
+echo "$CONTAINER_USERNAME:$CONTAINER_USERNAME" | chpasswd &&
+su --login --preserve-environment "$CONTAINER_USERNAME"
+EOF
+
+
+DOCKER_RUN_ARGS+=("--name" "${CONTAINER_NAME}"
+                  "--init"
+                  "--interactive"
+                  "--privileged"
+                  "--net=host"
+                  "--hostname" "$DOCKER_NAME"
+                  "-e" "DISPLAY"
+                  "-e" "HOME"
+                  "-e" "LANG=C.UTF-8"
+                  "-e" "TERM=xterm-256color"
+                  "-v" "/tmp/.X11-unix:/tmp/.X11-unix"
+                  "-v" "$HOME:$HOME"
+                  "-w" "$PWD"
+#                  "--gpus" "all"
+#                  "-e" "NVIDIA_DRIVER_CAPABILITIES=all"
+                  "-e" "TZ=$(cat /etc/timezone)")
+
+docker run "${DOCKER_RUN_ARGS[@]}" --rm --tty "$DOCKER_NAME":"$DOCKER_TAG" bash -ci "$CREATE_USER_COMMAND"

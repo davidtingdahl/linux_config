@@ -1,6 +1,0 @@
-#!/bin/bash
-
-GIT_DIR=$(git rev-parse --show-toplevel)
-
-[[ ! -d "$GIT_DIR" ]] && echo "ERROR: must be run from a VO repo" && exit 1
-zdocker-exec make -S -C $GIT_DIR/build $@
