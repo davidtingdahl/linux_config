@@ -257,7 +257,6 @@
     :config (add-hook 'python-mode-hook (lambda () 
                                           (local-set-key (kbd "<C-tab>") #'python-black-buffer))))
 ;; Python linter
-(require `pylint)
 (use-package 
     pylint 
     :ensure t 
