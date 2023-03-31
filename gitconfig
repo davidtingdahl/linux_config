@@ -6,7 +6,7 @@
 
         authors = "for-each-ref  --format=' %(authorname) %09 %(refname)' --sort=authorname"
 [user]
-	email = david.tingdahl@zenseact.com
+	email = ""
 	name = David Tingdahl
 [push]
 	default = simple

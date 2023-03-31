@@ -1,11 +1,10 @@
 ;;
 ;; ******************** SETUP PATHS ********************
 ;;
-(add-to-list 'load-path "~/linux_config/")
-(setenv "PATH" (concat (getenv "PATH") ":/home/s0000413/linux_config/scripts"))
-(setenv "PYTHONPATH"
-        "/home/s0000413/develop/src:/home/s0000413/develop/src/vision/components/visual_odometry/toolbox/benchmarking/python/perf/")
-(setq exec-path (append exec-path '("/home/s0000413/linux_config/scripts")))
+(setq linux-config-script-dir (concat linux-config-dir "scripts"))
+(setq exec-path (append exec-path '(linux-config-script-dir)))
+(setenv "PATH" (concat (getenv "PATH") linux-config-script-dir))
+(setenv "PYTHONPATH" linux-config-gitrepo1-dir)
 
 
 ;;
@@ -64,7 +63,7 @@
 
 ;; Set colors based on current directory"
 (defun set-local-colors () 
-  (cond ((string-match-p "develop2/src" default-directory) 
+  (cond ((string-match-p linux-config-gitrepo2 default-directory) 
          (face-remap-add-relative 'default 
                                   :background "black"))))
 
@@ -88,18 +87,18 @@
 (setq compilation-skip-threshold 2) ;; skip warnings
 (setq projectile-project-compilation-cmd "./bazel.py build")
 
-;; Ubuntu-misc-checks
-(defun ubuntu-misc-checks () 
+;; run-unit-tests
+(defun run-unit-tests () 
   (interactive)
   ;; Switch to `*shell*'
   (shell)
   ;; Goto last prompt, clear old input if any, and insert new one
   (goto-char (point-max)) 
   (comint-kill-input) 
-  (insert "cd ~/develop/src; src_config/jobs/ubuntu_misc_checks.py")
+  (insert (concat "cd " linux-config-gitrepo1-dir "; replace_me.py"))
   ;; Execute
   (comint-send-input))
-(global-set-key (kbd "<f6>") 'ubuntu-misc-checks)
+(global-set-key (kbd "<f6>") 'run-unit-tests)
 
 ;; Ipython macro
 (fset 'ipython [?i ?m ?p ?o ?r ?t ?  ?I ?P ?y ?t ?h ?o ?n return ?I ?P ?y ?t ?h ?o ?n ?. ?e ?m ?b ?e
@@ -107,11 +106,10 @@
 (global-set-key (kbd "<f2>") 'ipython)
 
 ;; Gerrit browse file
-(defun src-master-gerrit-browse-file () 
+(defun gerrit-browse-file () 
   (interactive) 
   (setq repo_path (file-relative-name buffer-file-name (projectile-project-root))) 
-  (setq url (concat "https://gerrit.cicd.autoheim.net/plugins/gitiles/src/+/refs/heads/master/"
-                    repo_path)) 
+  (setq url (concat linux-config-gerrit-url "plugins/gitiles/" linux-config-gitrepo1-name "/+/refs/heads/master/" repo_path)) 
   (browse-url url))
 
 
@@ -140,7 +138,7 @@
     :config (projectile-mode +1) 
     (define-key projectile-mode-map (kbd "s-p") 'projectile-command-map) 
     (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map) 
-    (add-to-list 'projectile-globally-ignored-directories "/home/s0000413/develop/src/sim") 
+;;    (add-to-list 'projectile-globally-ignored-directories "") 
     (define-key projectile-mode-map (kbd "C-c C-f") 'helm-projectile-find-file) 
     (define-key projectile-mode-map (kbd "C-c C-s") 'helm-projectile-ag) 
     (define-key projectile-mode-map (kbd "C-C C-g") 'helm-do-ag))
@@ -202,23 +200,22 @@
 (use-package 
     egerrit 
     :commands egerrit-dashboard 
-    :load-path "/home/s0000413/3rdparty/egerrit" 
+    :load-path "~/3rdparty/egerrit" 
     :config (setq egerrit-project-configs 
-                  '((:name "src" 
-                     :code-repo "/home/s0000413/develop/src"))) 
-    (setq egerrit-request-url "gerrit.cicd.autoheim.net") ;; runs gerrit-2.13
+                  '((:name "repo" 
+                     :code-repo linux-config-gitrepo1-dir))) 
+    (setq egerrit-request-url linux-config-gerrit-url) ;; runs gerrit-2.13
     (global-set-key (kbd "C-x o") 'egerrit-dashboard) 
     (setq-default show-trailing-whitespace t) 
     (add-hook 'egerrit-dashboard-mode-hook (lambda () 
                                              (setq show-trailing-whitespace 'nil))))
 
 ;; Tags
-(setenv "GTAGSLIBPATH"
-        "/home/s0000413/.cache/bazel/_bazel_s0000413/97e8f4cc27a395cdfb4287ada735f9db/external")
+(setenv "GTAGSLIBPATH" linux-config-bazel-cache-external-dir)
 (defun update-tags () 
   "Update TAGS" 
   (interactive) 
-  (shell-command "bash -c \"$HOME/linux_config/scripts/update_tags.sh\""))
+  (shell-command "bash -c \"" linux-config-script-dir "update_tags.sh\""))
 (global-set-key (kbd "<f3>") 'update-tags)
 
 (use-package 
@@ -261,7 +258,7 @@
     pylint 
     :ensure t 
     :config (setq pylint-options (list "--reports=n" "--output-format=parseable"
-                                       "--rcfile=/home/s0000413/develop/src/support/common/pylint3.cfg")) 
+                                       "--rcfile=patch/to/pylint3.cfg")) 
     (add-hook 'python-mode-hook (lambda () 
                                   (local-set-key (kbd "<C-S-tab") #'pylint))))
 ;; Bazel format
