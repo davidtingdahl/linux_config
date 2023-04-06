@@ -303,7 +303,9 @@
     cuda-mode 
     :ensure t)
 
-
+(use-package docker
+  :ensure t
+  :bind ("C-c d" . docker))
 
 
 ;; ******************** LEGACY ********************
