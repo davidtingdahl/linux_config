@@ -9,4 +9,7 @@ then
 fi
 cmd=$1
 set -ex
-xdotool search --onlyvisible --class $1 windowactivate --sync || $cmd
+
+wid=$(xdotool search --onlyvisible --class $1 | tail -n1)
+echo $wid
+xdotool windowactivate --sync $wid || $cmd
